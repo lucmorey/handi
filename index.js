@@ -11,7 +11,8 @@ const
 	MongoDBStore = require('connect-mongodb-session')(session),
     passport = require('passport'),
     port = 3000,
-    mongoConnectionString = 'mongodb://localhost/handi'
+    mongoConnectionString = 'mongodb://localhost/handi',
+    usersRouter = require('./routes/users.js')
  
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
@@ -31,3 +32,5 @@ app.listen(port, (err)=>{
 app.get('/', (req, res)=>{
     res.render('index')
 })
+
+app.use('/', usersRouter)
