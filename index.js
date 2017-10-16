@@ -13,6 +13,13 @@ const
     port = 3000,
     mongoConnectionString = 'mongodb://localhost/handi'
  
+app.set('view engine', 'ejs')
+app.use(ejsLayouts)
+app.use(logger('dev'))
+app.use(bodyParser.json())
+app.use(bodyParser.urlencoded())
+app.use(express.static(`${__dirname}/public`))
+
 mongoose.connect(mongoConnectionString, (err)=>{
     console.log(err || 'Connected to Database. 👍')
 })    
@@ -22,5 +29,5 @@ app.listen(port, (err)=>{
 })
 
 app.get('/', (req, res)=>{
-    res.send('homepage working')
+    res.render('index')
 })
