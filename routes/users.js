@@ -8,5 +8,11 @@ usersRouter.route('/login')
         res.render('login')
     })
 
+usersRouter.route('/signup')
+    .get((req, res)=>{
+        res.render('signup')
+    })
 
+usersRouter.route('/')
+    .get(usersCntr.index)
 module.exports = usersRouter
