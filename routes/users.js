@@ -33,7 +33,7 @@ usersRouter.get('/logout', (req, res)=>{
 })
 
 usersRouter.get('/edit', isLoggedIn, (req, res)=>{
-    res.render('edit', {user: req.user})
+    res.render('edit', {user: req.user, message: req.flash('editProfileMessage')})
 })
 
 usersRouter.patch('/users/:id/edit', isLoggedIn, usersCntr.update)
