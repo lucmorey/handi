@@ -32,6 +32,13 @@ usersRouter.get('/logout', (req, res)=>{
     res.redirect('/')
 })
 
+usersRouter.get('/edit', isLoggedIn, (req, res)=>{
+    res.render('edit', {user: req.user})
+})
+
+usersRouter.patch('/users/:id/edit', isLoggedIn, usersCntr.update)
+usersRouter.delete('/users/:id', isLoggedIn, usersCntr.destroy)
+
 function isLoggedIn(req, res, next){
     if(req.isAuthenticated()) return next()
     res.redirect('/')

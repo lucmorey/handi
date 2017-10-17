@@ -2,6 +2,7 @@ const
     dotenv = require('dotenv').load({silent: true}),
     express = require('express'),
     app = express(),
+    methodOverride = require('method-override')
     ejsLayouts = require('express-ejs-layouts'),
 	mongoose = require('mongoose'),
 	flash = require('connect-flash'),
@@ -20,7 +21,11 @@ const store = new MongoDBStore({
     url: MONGODB_URI,
     collection: 'sessions'
 })
+
+app.use(logger('dev'))
 app.use(express.static('public'))
+
+app.use(methodOverride('_method'))
  
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
