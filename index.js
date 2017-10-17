@@ -14,6 +14,7 @@ const
     MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/handi',
     passport = require('passport'),
     passportConfig = require('./config/passport.js'),
+    search = require('youtube-search'), 
     port = 3000,
     usersRouter = require('./routes/users.js')
 
@@ -53,6 +54,20 @@ app.use((req, res, next)=>{
 mongoose.connect(MONGODB_URI, (err)=>{
     console.log(err || 'Connected to Database. 👍')
 })    
+
+opts = {
+    maxResults: 5,
+    key: process.env.YOUTUBE_API_KEY
+}
+
+app.get('/search', (req, res) => {
+    search(req.query.term, opts, function(err, results) {
+        if(err) return console.log(err);
+        console.log(results)
+        res.send(results)
+    })
+    // console.dir(results);
+})
 
 app.listen(port, (err)=>{
     console.log(err || `Server Running on port ${port}. 👍`)
