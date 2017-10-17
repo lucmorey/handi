@@ -31,7 +31,12 @@ module.exports = {
         })
     },
     update:(req, res)=>{
-        console.log(req.body)
+        for(field in req.body) {
+            if(req.body[field].length == 0) {
+                req.flash('editProfileMessage', 'Please include all fields...')
+                return res.redirect('/edit')
+            }
+        }
         User.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedUser)=>{
             if (err) return console.log(err)
             console.log(updatedUser)
