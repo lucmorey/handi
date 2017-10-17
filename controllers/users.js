@@ -31,9 +31,11 @@ module.exports = {
         })
     },
     update:(req, res)=>{
+        console.log(req.body)
         User.findByIdAndUpdate(req.params.id, req.body, {new:true}, (err, updatedUser)=>{
             if (err) return console.log(err)
-            res.redirect(`/users/${updatedUser.id}`)
+            console.log(updatedUser)
+            res.redirect(`/profile`)
         })
     },
     destroy: (req, res)=>{
