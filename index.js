@@ -56,7 +56,7 @@ mongoose.connect(MONGODB_URI, (err)=>{
 })    
 
 opts = {
-    maxResults: 5,
+    maxResults: 3,
     key: process.env.YOUTUBE_API_KEY
 }
 

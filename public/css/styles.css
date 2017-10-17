@@ -7,3 +7,6 @@
     background-color: #55d0f9;
     border-color: #55d0f9
 }
+.video-players {
+    display: inline-block;
+}
