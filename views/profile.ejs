@@ -1,23 +1,23 @@
+<div class="col-lg-3">
 <div class="page-header">
+
+        <img src="../public/images/handi-bar-logo.png" height="30" width="60" alt="logo">
     
-        <h1><%= user.name %></h1>
+        <h1><%= user.userName %></h1>
     
-        <a href="/logout" class="btn btn-default btn-sm">Logout</a>
+        <a href="/logout" class="btn btn-primary btn-sm">Logout</a>
     
     </div>
     <div class="row">
         <div class="col-sm-6 col-sm-offset-3">
             <div class="well">
-    
-                <h3>Locally Stored User</h3>
-    
                 <p>
-                    <strong>Name</strong>: <%= user.name %><br>
-                    <strong>id</strong>: <%= user._id %><br>
-                    <strong>email</strong>: <%= user.email %><br>
-                    <strong>password</strong>: <%= user.password %>
-                </p>
-                    
+                    <strong>Name</strong>: <br>
+                    <%= user.userName %><br>
+                    <strong>email</strong>: <br>
+                    <%= user.email %><br>
+                </p>    
             </div>
         </div>
     </div>
+</div>
