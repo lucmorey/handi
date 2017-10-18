@@ -17,22 +17,17 @@ body {
 .card {
     display: inline-block
 }
+/*  */
 
------------------------------------------
-
-/*
-    DEMO STYLE
-*/
-@import "https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700";
-
+@import "https://fonts.googleapis.com/css?family=Fugaz+One|Montserrat";
 
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Fugaz One';
     background: #fafafa;
 }
 
 p {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     font-size: 1.1em;
     font-weight: 300;
     line-height: 1.7em;
@@ -66,9 +61,8 @@ a, a:hover, a:focus {
     margin: 40px 0;
 }
 
-/* ---------------------------------------------------
-    SIDEBAR STYLE
------------------------------------------------------ */
+
+
 .wrapper {
     display: flex;
     align-items: stretch;
@@ -119,6 +113,35 @@ a, a:hover, a:focus {
 }
 
 
+
+#login-form {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#signup-form {
+    margin: 0 auto;
+    text-align: center;
+}
+
+#search-value {
+    text-align: center;
+    margin-left: 8px;
+    width: 200px;
+    margin-right: 8px;
+}
+
+#side-add-button {
+    text-align: center;
+    height: 40px;
+    margin-left: -4px;
+}
+
+#youtube-search {
+    height: 60px;
+}
+
+
 a[data-toggle="collapse"] {
     position: relative;
 }
@@ -144,20 +167,16 @@ ul ul a {
 
 
 
-
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
 #content {
     padding: 20px;
     min-height: 100vh;
-    transition: all 0.3s;
+    transition: all 0.5s;
 }
 
 #sidebarCollapse {
     width: 40px;
     height: 40px;
-    background: #f5f5f5;
+    background: rgba(255, 255, 255, 0);
 }
 
 #sidebarCollapse span {
@@ -188,9 +207,6 @@ ul ul a {
 }
 
 
-/* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -250px;
@@ -221,4 +237,3 @@ ul ul a {
     }
 
 }
------------------------------------------
