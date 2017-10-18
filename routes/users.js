@@ -4,6 +4,7 @@ const
     usersRouter = new express.Router()
     usersCntr = require('../controllers/users.js')
 
+
 usersRouter.route('/login')
     .get((req, res)=>{
         res.render('login')
@@ -43,5 +44,7 @@ function isLoggedIn(req, res, next){
     if(req.isAuthenticated()) return next()
     res.redirect('/')
 }
+
+usersRouter.post('/users/:id/interests', usersCntr.interest)
 
 module.exports = usersRouter

@@ -48,5 +48,15 @@ module.exports = {
             if (err) return console.log(err)
             res.redirect('/')
         })
-    }
+    },
+    interest: (req, res) => {
+        User.findById(req.params.id, (err, user)=> {
+            if (err) return console.log(err)
+            user.interests.push(req.body)
+            user.save((err, updateUser) => {
+                if (err) return console.log(err) 
+                 res.json(user)
+             })
+        })
+     }
 }
