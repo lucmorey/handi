@@ -1,3 +1,6 @@
+body {
+    text-align: center;
+}
 .btn-primary {
     color: #fff;
     background-color: #99e4ff;
@@ -10,3 +13,4 @@
 .video-players {
     display: inline-block;
 }
+
