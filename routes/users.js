@@ -47,4 +47,6 @@ function isLoggedIn(req, res, next){
 
 usersRouter.post('/users/:id/interests', usersCntr.interest)
 
+usersRouter.get('/populate/:id', usersCntr.populate)
+
 module.exports = usersRouter
