@@ -58,5 +58,11 @@ module.exports = {
                  res.json(user)
              })
         })
-     }
+     },
+    populate: (req, res)=>{
+        User.findById(req.params.id, (err, user)=>{
+            if (err) return console.log(err)
+            res.send(user)
+        })
+    }
 }

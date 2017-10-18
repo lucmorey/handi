@@ -1,60 +1,61 @@
 <% include ./partials/sidebar %>
 
-<div class="container">
-    
-    <h2>Welcome to your Handi-Dash</h2>
-    <ul id="list"></ul>
-    <div class="line"></div>
-
-    <h2>Card Test</h2>
-
-    <div class="card video" style="width: 19rem;">
-        <img class="card-img-top" src="..." alt="Card image cap">
-        <div class="card-body">
-            <p class="card-text">title</p>
-        </div>
-    </div>
-
-
-    <div class="line"></div>
-
-    <h2>Lorem Ipsum Dolor</h2>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-
-    <div class="line"></div>
-
-    <h3>Lorem Ipsum Dolor</h3>
-    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</div>
+<div id="content" class="container"></div>
 
 <script>
-console.log('<%=user.interests[0].interest%>')
 var $searchBar = $("#youtube-search")
+var $content = $('#content')
 var $list = $('#list')
+
+
+$(document).ready(()=>{
+    $.ajax({url: '/populate/<%= user.id %>', method: 'get'}).done((res)=>{
+        console.log(res.interests)
+        res.interests.forEach((el)=>{
+            $content.append($('<h2>').text(el.interest))
+            $content.append($('<ul>').addClass(el.interest))
+            $content.append($('<div>').addClass('like'))
+
+            var searchURL = '/search?term=' + el.interest
+            $.ajax({url: searchURL, method: 'get'}).done(function(res){
+            
+                res.forEach((ytResult)=>{
+                    $div = $('<div>').addClass('card').attr('style', "width: 18rem;").html(
+                            `<iframe class="card-img-top" src="http://www.youtube.com/embed/${ytResult.id}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`)
+                    $cardbody = $('<div>').addClass('card-body').append($('<div>').addClass('card-text'))
+                    $button = $('<div>').append($('<button>'))
+                    $cardbody.append($button)
+                    $div.append($cardbody)
+                    console.log('.'+el.interest)
+                    $('.'+el.interest).append($div)
+                }) 
+            })    
+        })
+    })
+})
+
 $searchBar.on('submit', (evt) => {
     evt.preventDefault()
     var term = $("#search-value").val()
-    var searchURL = '/search?term=' + term
     var data = {
         "interest" : term
     }
     $.ajax({url: '/users/<%=user.id%>/interests', method:'post', data: JSON.stringify(data), contentType: "application/json"}).done(function(res){
         console.log(res)
     })
+    var searchURL = '/search?term=' + term
     $.ajax({url: searchURL, method: 'get'}).done(function(res){
-    console.log(res)
-    $list.html('')
-    res.forEach((el)=>{
-        
-        $div = $('<div>').addClass('card').attr('style', "width: 18rem;").html(
-                `<iframe class="card-img-top" src="http://www.youtube.com/embed/${el.id}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`)
-        $cardbody = $('<div>').addClass('card-body').append($('<div>').addClass('card-text'))
-        $button = $('<div>').append($('<button>'))
-        $cardbody.append($button)
-        $div.append($cardbody)
-        
-        $list.append($div)
-    }) 
+    
+        res.forEach((el)=>{
+            $div = $('<div>').addClass('card').attr('style', "width: 18rem;").html(
+                    `<iframe class="card-img-top" src="http://www.youtube.com/embed/${el.id}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`)
+            $cardbody = $('<div>').addClass('card-body').append($('<div>').addClass('card-text'))
+            $button = $('<div>').append($('<button>'))
+            $cardbody.append($button)
+            $div.append($cardbody)
+            
+            $list.append($div)
+        }) 
     })
 })
 
