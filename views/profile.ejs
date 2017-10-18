@@ -1,8 +1,5 @@
 <% include ./partials/sidebar %>
-<form id="add-interests" class="form-inline my-2 my-lg-0">
-    <input class="form-control mr-sm-2" id="interest-value" type="text" placeholder="Search" aria-label="Search">
-    <button class="btn btn-primary my-2 my-sm-0" type="submit">+</button>
-</form>
+
 <div class="container">
     
     <h2>Welcome to your Handi-Dash</h2>
@@ -30,15 +27,20 @@
     <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 </div>
 
-<h1><%=user.id%></h1>
 <script>
-
+console.log('<%=user.interests[0].interest%>')
 var $searchBar = $("#youtube-search")
 var $list = $('#list')
 $searchBar.on('submit', (evt) => {
     evt.preventDefault()
     var term = $("#search-value").val()
     var searchURL = '/search?term=' + term
+    var data = {
+        "interest" : term
+    }
+    $.ajax({url: '/users/<%=user.id%>/interests', method:'post', data: JSON.stringify(data), contentType: "application/json"}).done(function(res){
+        console.log(res)
+    })
     $.ajax({url: searchURL, method: 'get'}).done(function(res){
     console.log(res)
     $list.html('')
