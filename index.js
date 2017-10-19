@@ -11,6 +11,21 @@ const
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
 	MongoDBStore = require('connect-mongodb-session')(session),
+<<<<<<< HEAD
+    mongoConnectionString = process.env.MONGODB_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/handi',
+    passport = require('passport'),
+    passportConfig = require('./config/passport.js'),
+    search = require('youtube-search'), 
+    port = process.env.PORT || 3000,
+    usersRouter = require('./routes/users.js')
+
+    mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGODB_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/handi' )
+
+    const store = new MongoDBStore({
+        url: mongoConnectionString,
+        collection: 'sessions'
+    })
+=======
     passport = require('passport'),
     passportConfig = require('./config/passport.js'),
     search = require('youtube-search'),
@@ -32,6 +47,7 @@ const store = new MongoDBStore({
     uri: MONGODB_URI,
     collection: 'sessions'
 })   
+>>>>>>> 83a84b50f8dac01a1cc8bac5e6dd539c8284b2f0
 
 app.use(logger('dev'))
 app.use(express.static(__dirname + 'public'))
@@ -60,7 +76,14 @@ app.use((req, res, next)=>{
     app.locals.loggedIn = !!req.user
     next()
 })
+<<<<<<< HEAD
+
+mongoose.connect(mongoConnectionString, (err)=>{
+    console.log(err || 'Connected to Database. 👍')
+})    
+=======
    
+>>>>>>> 83a84b50f8dac01a1cc8bac5e6dd539c8284b2f0
 
 opts = {
     maxResults: 3,
