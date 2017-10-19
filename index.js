@@ -1,5 +1,3 @@
-console.log(process.env)
-
 const
     dotenv = require('dotenv').load({silent: true}),
     express = require('express'),
@@ -81,3 +79,5 @@ app.get('/', (req, res)=>{
 })
 
 app.use('/', usersRouter)
+
+console.log(process.env)
