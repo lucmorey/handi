@@ -29,10 +29,10 @@ mongoose.connect(MONGODB_URI, (err)=>{
 })
 
 const store = new MongoDBStore({
-    url: MONGODB_URI,
+    uri: MONGODB_URI,
     collection: 'sessions'
 })   
- 
+
 app.use(logger('dev'))
 app.use(express.static(__dirname + 'public'))
 
