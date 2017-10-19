@@ -2,6 +2,7 @@ body {
     text-align: center;
 }
 .btn-primary {
+    width: 150px;
     color: #fff;
     background-color: #99e4ff;
     border-color: #99e4ff;
@@ -17,13 +18,22 @@ body {
 .card {
     display: inline-block
 }
-/*  */
 
 @import "https://fonts.googleapis.com/css?family=Fugaz+One|Montserrat";
 
 body {
     font-family: 'Fugaz One';
-    background: #fafafa;
+    background: #f2f0f0;
+}
+
+h2 {
+    color: rgb(85, 85, 85);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1)
+}
+
+h3 {
+    color: rgb(13, 22, 31);
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.1)
 }
 
 p {
@@ -35,7 +45,7 @@ p {
 }
 
 a, a:hover, a:focus {
-    color: inherit;
+    color: rgb(85, 85, 85);
     text-decoration: none;
     transition: all 0.3s;
 }
@@ -61,8 +71,6 @@ a, a:hover, a:focus {
     margin: 40px 0;
 }
 
-
-
 .wrapper {
     display: flex;
     align-items: stretch;
@@ -70,16 +78,16 @@ a, a:hover, a:focus {
 }
 
 #sidebar {
-    min-width: 250px;
-    max-width: 250px;
+    min-width: 300px;
+    max-width: 300px;
     background: rgb(190, 194, 197);
     color: #fff;
-    transition: all 0.6s cubic-bezier(0.945, 0.020, 0.270, 0.665);
+    transition: all 0.7s cubic-bezier(0.945, 0.020, 0.270, 0.665);
     transform-origin: bottom left;
 }
 
 #sidebar.active {
-    margin-left: -250px;
+    margin-left: -300px;
     transform: rotateY(100deg);
 }
 
@@ -112,11 +120,13 @@ a, a:hover, a:focus {
     background: #99e4ff;
 }
 
-
-
 #login-form {
     margin: 0 auto;
     text-align: center;
+}
+
+#logout-button {
+    color: rgb(13, 22, 31);
 }
 
 #signup-form {
@@ -130,6 +140,7 @@ a, a:hover, a:focus {
 }
 
 #search-value {
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
     margin-left: 8px;
     width: 200px;
@@ -137,15 +148,23 @@ a, a:hover, a:focus {
 }
 
 #side-add-button {
+    box-shadow: 0 3px 0 0 #7bb8cb;
     text-align: center;
-    height: 40px;
-    margin-left: -4px;
+    width: 75px;
+    height: 35px;
+    margin-left: 0px;
 }
 
 #youtube-search {
     height: 60px;
 }
 
+#copyright {
+    margin-left: 25px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+}
 
 a[data-toggle="collapse"] {
     position: relative;
@@ -163,14 +182,11 @@ a[aria-expanded="true"]::before {
     content: '\e260';
 }
 
-
 ul ul a {
     font-size: 0.9em !important;
     padding-left: 30px !important;
     background: #99e4ff;
 }
-
-
 
 #content {
     padding: 20px;
@@ -204,13 +220,11 @@ ul ul a {
     transform: rotate(-45deg) translate(1px, -1px);
 }
 
-
 #sidebarCollapse.active span {
     transform: none;
     opacity: 1;
     margin: 5px auto;
 }
-
 
 @media (max-width: 768px) {
     #sidebar {

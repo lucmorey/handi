@@ -16,12 +16,14 @@
             <label>*Email</label>
             <input type="text" class="form-control" name="email" value="<%= user.email %>">
         </div>
-        <button type="submit" class="btn btn-warning btn-lg">Update</button>
+        <button type="submit" class="btn btn-primary btn-lg">Update</button>
     </form>
+    <br>
     <form action="/users/<%= user.id %>?_method=DELETE" method="post">
-        <button type="submit" class="btn btn-danger btn-lg">Delete</button>
-        <a href="/profile" class="btn btn-primary btn-lg">Go Back</a>
+        <button type="submit" class="btn btn-primary btn-lg">Delete</button>
+        
     </form>
-
+    <br>
+    <a href="/profile" class="btn btn-primary btn-lg">Go Back</a>
     </div>
 </div>
