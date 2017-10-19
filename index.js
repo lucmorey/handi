@@ -1,3 +1,4 @@
+console.log(process.env)
 const
     dotenv = require('dotenv').load({silent: true}),
     express = require('express'),
@@ -18,6 +19,8 @@ const
     port = process.env.PORT || 3000,
     usersRouter = require('./routes/users.js')
 
+
+
 const store = new MongoDBStore({
     url: MONGODB_URI,
     collection: 'sessions'
@@ -31,7 +34,7 @@ app.use(methodOverride('_method'))
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded())
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static(`${__dirname}/public`))
 app.use(flash())
 app.use(session({
@@ -66,7 +69,6 @@ app.get('/search', (req, res) => {
         console.log(results)
         res.send(results)
     })
-    // console.dir(results);
 })
 
 app.listen(port, (err)=>{
@@ -78,3 +80,5 @@ app.get('/', (req, res)=>{
 })
 
 app.use('/', usersRouter)
+
+console.log(process.env)
