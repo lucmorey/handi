@@ -49,4 +49,6 @@ usersRouter.post('/users/:id/interests', usersCntr.interest)
 
 usersRouter.get('/populate/:id', usersCntr.populate)
 
+usersRouter.delete('/users/:userId/:interestId', usersCntr.deleteInterest)
+
 module.exports = usersRouter

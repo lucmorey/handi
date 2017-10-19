@@ -55,7 +55,7 @@ module.exports = {
             user.interests.unshift(req.body)
             user.save((err, updateUser) => {
                 if (err) return console.log(err) 
-                 res.json(user)
+                 res.json(updateUser.interests[0]._id)
              })
         })
      },
@@ -63,6 +63,19 @@ module.exports = {
         User.findById(req.params.id, (err, user)=>{
             if (err) return console.log(err)
             res.send(user)
+        })
+    },
+    deleteInterest: (req, res)=>{
+        User.findById(req.params.userId, (err, user)=>{
+            if (err) return console.log(err)
+            var interestIndex = user.interests.findIndex((el)=>{
+                return el.id == req.params.interestId
+            })
+            user.interests.splice(interestIndex, 1)
+            user.save((err, updatedUser)=>{
+                if (err) return console.log(err)
+                res.send(user)
+            })
         })
     }
 }
