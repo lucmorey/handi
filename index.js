@@ -18,14 +18,12 @@ const
     port = process.env.PORT || 3000,
     usersRouter = require('./routes/users.js')
 
-/* const store = new MongoDBStore({
-    url: mongoConnectionString,
-    collection: 'sessions'
-})
-*/
-    const store = {};
+    mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGODB_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/handi' )
 
-mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGODB_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/handi' )
+    const store = new MongoDBStore({
+        url: mongoConnectionString,
+        collection: 'sessions'
+    })
 
 app.use(logger('dev'))
 app.use(express.static(__dirname + 'public'))
