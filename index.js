@@ -11,17 +11,27 @@ const
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
 	MongoDBStore = require('connect-mongodb-session')(session),
-    MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/handi',
     passport = require('passport'),
     passportConfig = require('./config/passport.js'),
-    search = require('youtube-search'), 
-    port = 3000,
+    search = require('youtube-search'),
+    MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/handi'
+    port = process.env.PORT || 3000,
     usersRouter = require('./routes/users.js')
 
-const store = new MongoDBStore({
-    url: MONGODB_URI,
-    collection: 'sessions'
+
+
+mongoose.connect(MONGODB_URI, (err)=>{
+    if (err){
+        console.log(`👎 Failed to connect to MONGODB_URI: ${MONGODB_URI}`)
+        throw err
+    }
+    console.log(`Connected to Database. 👍 at: ${MONGODB_URI}`)
 })
+
+const store = new MongoDBStore({
+    uri: MONGODB_URI,
+    collection: 'sessions'
+})   
 
 app.use(logger('dev'))
 app.use(express.static(__dirname + 'public'))
@@ -31,7 +41,7 @@ app.use(methodOverride('_method'))
 app.set('view engine', 'ejs')
 app.use(ejsLayouts)
 app.use(bodyParser.json())
-app.use(bodyParser.urlencoded())
+app.use(bodyParser.urlencoded({extended: true}))
 app.use(express.static(`${__dirname}/public`))
 app.use(flash())
 app.use(session({
@@ -50,10 +60,7 @@ app.use((req, res, next)=>{
     app.locals.loggedIn = !!req.user
     next()
 })
-
-mongoose.connect(MONGODB_URI, (err)=>{
-    console.log(err || 'Connected to Database. 👍')
-})    
+   
 
 opts = {
     maxResults: 3,
@@ -66,15 +73,18 @@ app.get('/search', (req, res) => {
         console.log(results)
         res.send(results)
     })
-    // console.dir(results);
 })
 
-app.listen(port, (err)=>{
-    console.log(err || `Server Running on port ${port}. 👍`)
-})
+
 
 app.get('/', (req, res)=>{
     res.render('index')
 })
 
 app.use('/', usersRouter)
+
+app.listen(port, (err)=>{
+    console.log(err || `Server Running on port ${port}. 👍`)
+})
+
+
