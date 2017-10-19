@@ -15,7 +15,7 @@ const
     passport = require('passport'),
     passportConfig = require('./config/passport.js'),
     search = require('youtube-search'), 
-    port = 3000,
+    port = process.env.PORT || 3000,
     usersRouter = require('./routes/users.js')
 
 const store = new MongoDBStore({
