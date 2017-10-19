@@ -11,7 +11,7 @@ const
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
 	MongoDBStore = require('connect-mongodb-session')(session),
-    MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/handi',
+    MONGODB_URI = 'mongodb://heroku_dljn6htf:mig8dqtkli3i1cin3gqgckf6q5@ds125195.mlab.com:25195/heroku_dljn6htf',
     passport = require('passport'),
     passportConfig = require('./config/passport.js'),
     search = require('youtube-search'), 
