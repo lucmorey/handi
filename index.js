@@ -14,7 +14,7 @@ const
     passport = require('passport'),
     passportConfig = require('./config/passport.js'),
     search = require('youtube-search'),
-    MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/handi'
+    MONGODB_URI = process.env.MONGODB_URI 
     port = process.env.PORT || 3000,
     usersRouter = require('./routes/users.js')
 
@@ -78,5 +78,5 @@ app.listen(port, (err)=>{
 })
 
 mongoose.connect(MONGODB_URI, (err)=>{
-    console.log(err || 'Connected to Database. 👍')
+    console.log(err || `Connected to Database. 👍 at: ${MONGODB_URI}`)
 })
