@@ -18,7 +18,7 @@
                 $.ajax({url: searchURL, method: 'get'}).done(function(res){
                     res.forEach((ytResult)=>{
                         $div = $('<div>').addClass('card').attr('style', "width: 18rem;").html(
-                                `<iframe class="card-img-top" src="http://www.youtube.com/embed/${ytResult.id}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`)
+                                `<iframe class="card-img-top" src="https://www.youtube.com/embed/${ytResult.id}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`)
                         $cardbody = $('<div>').addClass('card-body').append($('<div>').addClass('card-text'))
                         $button = $('<div>').append($('<button>'))
                         $cardbody.append($button)
