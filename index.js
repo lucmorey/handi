@@ -13,12 +13,13 @@ const
 	MongoDBStore = require('connect-mongodb-session')(session),
     passport = require('passport'),
     passportConfig = require('./config/passport.js'),
-    search = require('youtube-search'), 
+    search = require('youtube-search'),
+    MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/handi'
     port = process.env.PORT || 3000,
     usersRouter = require('./routes/users.js')
 
 const store = new MongoDBStore({
-    url: 'mongodb://heroku_dljn6htf:mig8dqtkli3i1cin3gqgckf6q5@ds125195.mlab.com:25195/heroku_dljn6htf',
+    url: MONGODB_URI,
     collection: 'sessions'
 })
 
@@ -50,7 +51,7 @@ app.use((req, res, next)=>{
     next()
 })
 
-mongoose.connect('mongodb://heroku_dljn6htf:mig8dqtkli3i1cin3gqgckf6q5@ds125195.mlab.com:25195/heroku_dljn6htf', (err)=>{
+mongoose.connect(MONGODB_URI, (err)=>{
     console.log(err || 'Connected to Database. 👍')
 })    
 
