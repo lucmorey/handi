@@ -11,9 +11,12 @@
         $.ajax({url: '/populate/<%= user.id %>', method: 'get'}).done((res)=>{
             console.log(res.interests)
             res.interests.forEach((el)=>{
-                $content.append($('<h2>').text(el.interest))
-                $content.append($('<ul>').addClass(el.interest))
-                $content.append($('<div>').addClass('like'))
+                $interestRow = $('<div>').addClass(el._id)
+                $interestRow.append($('<h2>').text(el.interest))
+                $interestRow.append($('<ul>').addClass(el.interest))
+                $interestRow.append($('<button>').addClass('btn btn-primary delete').attr('id', el._id).text('Delete Interest'))
+                $interestRow.append($('<div>').addClass('line'))
+                $content.append($interestRow)
                 var searchURL = '/search?term=' + el.interest
                 $.ajax({url: searchURL, method: 'get'}).done(function(res){
                     res.forEach((ytResult)=>{
@@ -30,6 +33,13 @@
             })
         })
     })
+
+    $('body').on('click', '.delete', function(evt){
+        $.ajax({url: '/users/<%= user.id %>/' + this.id, method: 'delete'}).done(function(res){
+            console.log(res)
+        })
+        $('.' + this.id).remove()
+    })
     
     $searchBar.on('submit', (evt) => {
         evt.preventDefault()
@@ -39,16 +49,21 @@
         }
         $.ajax({url: '/users/<%=user.id%>/interests', method:'post', data: JSON.stringify(data), contentType: "application/json"}).done(function(res){
             console.log(res)
+            $newRow = $('<div>').addClass(res)
+            $newRow.append($('<h2>').text(term))
+            $newRow.append($('<ul>').addClass(term))
+            $newRow.append($('<button>').addClass('btn btn-primary delete').attr('id', res).text('Delete Interest'))
+            $newRow.append($('<div>').addClass('line'))
+            $content.prepend($newRow)
+            
         })
         var searchURL = '/search?term=' + term
-        $content.prepend($('<div>').addClass('line'))
-        $content.prepend($('<ul>').addClass(term))
-        $content.prepend($('<h2>').text(term))
+        
         $.ajax({url: searchURL, method: 'get'}).done(function(res){
         
             res.forEach((el)=>{
                 $div = $('<div>').addClass('card').attr('style', "width: 18rem;").html(
-                        `<iframe class="card-img-top" src="http://www.youtube.com/embed/${el.id}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`)
+                        `<iframe class="card-img-top" src="https://www.youtube.com/embed/${el.id}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`)
                 $cardbody = $('<div>').addClass('card-body').append($('<div>').addClass('card-text'))
                 $button = $('<div>').append($('<button>'))
                 $cardbody.append($button)
