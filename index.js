@@ -11,7 +11,7 @@ const
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
 	MongoDBStore = require('connect-mongodb-session')(session),
-    MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/handi',
+    mongoConnectionString = process.env.MONGODB_URI || 'mongodb://localhost/handi',
     passport = require('passport'),
     passportConfig = require('./config/passport.js'),
     search = require('youtube-search'), 
@@ -19,7 +19,7 @@ const
     usersRouter = require('./routes/users.js')
 
 const store = new MongoDBStore({
-    url: MONGODB_URI,
+    url: mongoConnectionString,
     collection: 'sessions'
 })
 
@@ -51,7 +51,7 @@ app.use((req, res, next)=>{
     next()
 })
 
-mongoose.connect(MONGODB_URI, (err)=>{
+mongoose.connect(mongoConnectionString, (err)=>{
     console.log(err || 'Connected to Database. 👍')
 })    
 
