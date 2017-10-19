@@ -77,10 +77,10 @@ app.listen(port, (err)=>{
     console.log(err || `Server Running on port ${port}. 👍`)
 })
 
-mongoose.connect(MONGODB_URI, (err)=>{
-    if (err){
-        console.log(`👎 Failed to connect to MONGODB_URI: ${MONGODB_URI}`)
-        throw err
-    }
-    console.log(`Connected to Database. 👍 at: ${MONGODB_URI}`)
-})
+// mongoose.connect(MONGODB_URI, (err)=>{
+//     if (err){
+//         console.log(`👎 Failed to connect to MONGODB_URI: ${MONGODB_URI}`)
+//         throw err
+//     }
+//     console.log(`Connected to Database. 👍 at: ${MONGODB_URI}`)
+// })
