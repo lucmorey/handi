@@ -1,4 +1,3 @@
-console.log(process.env)
 const
     dotenv = require('dotenv').load({silent: true}),
     express = require('express'),
@@ -18,8 +17,6 @@ const
     MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/handi'
     port = process.env.PORT || 3000,
     usersRouter = require('./routes/users.js')
-
-
 
 const store = new MongoDBStore({
     url: MONGODB_URI,
@@ -53,10 +50,7 @@ app.use((req, res, next)=>{
     app.locals.loggedIn = !!req.user
     next()
 })
-
-mongoose.connect(MONGODB_URI, (err)=>{
-    console.log(err || 'Connected to Database. 👍')
-})    
+   
 
 opts = {
     maxResults: 3,
@@ -71,9 +65,7 @@ app.get('/search', (req, res) => {
     })
 })
 
-app.listen(port, (err)=>{
-    console.log(err || `Server Running on port ${port}. 👍`)
-})
+
 
 app.get('/', (req, res)=>{
     res.render('index')
@@ -81,4 +73,10 @@ app.get('/', (req, res)=>{
 
 app.use('/', usersRouter)
 
-console.log(process.env)
+app.listen(port, (err)=>{
+    console.log(err || `Server Running on port ${port}. 👍`)
+})
+
+mongoose.connect(MONGODB_URI, (err)=>{
+    console.log(err || 'Connected to Database. 👍')
+})
