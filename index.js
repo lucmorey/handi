@@ -23,6 +23,7 @@ const
     collection: 'sessions'
 })
 */
+    const store = {};
 
 mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGODB_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/handi' )
 
