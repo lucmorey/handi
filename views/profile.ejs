@@ -23,7 +23,7 @@
                         $div = $('<div>').addClass('card').attr('style', "width: 18rem;").html(
                                 `<iframe class="card-img-top" src="https://www.youtube.com/embed/${ytResult.id}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`)
                         $cardbody = $('<div>').addClass('card-body').append($('<div>').addClass('card-text'))
-                        $button = $('<div>').append($('<button>'))
+                        $button = $('<div>').append($('<button>').addClass('btn btn-primary wins').attr("id", el).text("winner!"))
                         $cardbody.append($button)
                         $div.append($cardbody)
                         console.log('.'+el.interest)
@@ -39,6 +39,15 @@
             console.log(res)
         })
         $('.' + this.id).remove()
+    })
+    $('body').on('click', '.wins', function(evt) {
+        var winData = {
+            "win": this.id 
+        }
+        $.ajax({url: '/wins/<%= user.id %>', method: 'post', data: JSON.stringify(winData), contentType: "application/json"}).done(function(res){
+            console.log(res)
+        })
+
     })
     
     $searchBar.on('submit', (evt) => {

@@ -77,5 +77,16 @@ module.exports = {
                 res.send(user)
             })
         })
+    },
+    addWin: (req, res) => {
+        // User.findById(req.params.userId, (err,user) => {
+        //     if (err) return console.log(err)
+        //     user.wins.unshift(req.body)
+        //     user.save((err, updateUser) => {
+        //         if (err) return console.log(err)
+        //         res.json(updateUser.wins[0]._id)
+        //     })
+        // })
+        res.send(req)
     }
 }

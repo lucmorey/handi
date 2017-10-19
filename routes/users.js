@@ -45,6 +45,8 @@ function isLoggedIn(req, res, next){
     res.redirect('/')
 }
 
+usersRouter.post('/wins/:id', usersCntr.addWin)
+
 usersRouter.post('/users/:id/interests', usersCntr.interest)
 
 usersRouter.get('/populate/:id', usersCntr.populate)

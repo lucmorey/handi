@@ -4,12 +4,15 @@ const
     interestsSchema =new mongoose.Schema({ 
         interest: String
     }),
-
+    winsSchema = new mongoose.Schema({
+        win: String
+    }),
     usersSchema = new mongoose.Schema({
         userName: {type: String, required: true, minlength: 1},
         email: {type: String, required: true, unique: true, minlength: 1},
         password: {type: String, required: true},
-        interests: [interestsSchema]
+        interests: [interestsSchema],
+        wins: [winsSchema]
     }, {timestamps: true})
 
     
