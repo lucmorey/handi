@@ -41,6 +41,9 @@
             console.log(res)
         })
         var searchURL = '/search?term=' + term
+        $content.prepend($('<div>').addClass('line'))
+        $content.prepend($('<ul>').addClass(term))
+        $content.prepend($('<h2>').text(term))
         $.ajax({url: searchURL, method: 'get'}).done(function(res){
         
             res.forEach((el)=>{
@@ -49,40 +52,11 @@
                 $cardbody = $('<div>').addClass('card-body').append($('<div>').addClass('card-text'))
                 $button = $('<div>').append($('<button>'))
                 $cardbody.append($button)
-                $div.append($cardbody)
                 
-                $list.append($div)
-            }) 
-        })
-    })
-
-    var searchURL = '/search?term=' + term
-    $content.prepend($('<div>').addClass('line'))
-    $content.prepend($('<ul>').addClass(term))
-    $content.prepend($('<h2>').text(term))
-    $.ajax({url: searchURL, method: 'get'}).done(function(res){
-    
-        res.forEach((el)=>{
-            $div = $('<div>').addClass('card').attr('style', "width: 18rem;").html(
-                    `<iframe class="card-img-top" src="http://www.youtube.com/embed/${el.id}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`)
-            $cardbody = $('<div>').addClass('card-body').append($('<div>').addClass('card-text'))
-            $button = $('<div>').append($('<button>'))
-            $cardbody.append($button)
-            
-            $div.append($cardbody)
-            console.log($('#' + term))
-            $('.' + term).append($div)
-        }) 
-    
-    var $addInterests = $('#add-interests')
-    
-    $addInterests.on("submit", (evt) => {
-        evt.preventDefault()
-        var data = {
-            "interest" :$('#interest-value').val()
-        }
-        $.ajax({url: '/users/<%=user.id%>/interests', method:'post', data: JSON.stringify(data), contentType: "application/json"}).done(function(res){
-            console.log(res)
+                $div.append($cardbody)
+                console.log($('#' + term))
+                $('.' + term).append($div)
+            })
         })
     })
 
