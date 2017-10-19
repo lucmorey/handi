@@ -77,6 +77,7 @@ app.listen(port, (err)=>{
     console.log(err || `Server Running on port ${port}. 👍`)
 })
 
+console.log(`about to connect mongodb at: ${MONGODB_URI}`)
 mongoose.connect(MONGODB_URI, (err)=>{
     console.log(err || `Connected to Database. 👍 at: ${MONGODB_URI}`)
 })
