@@ -11,17 +11,20 @@ const
 	bodyParser = require('body-parser'),
 	session = require('express-session'),
 	MongoDBStore = require('connect-mongodb-session')(session),
-    mongoConnectionString = process.env.MONGODB_URI || 'mongodb://localhost/handi',
+    mongoConnectionString = process.env.MONGODB_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/handi',
     passport = require('passport'),
     passportConfig = require('./config/passport.js'),
     search = require('youtube-search'), 
     port = process.env.PORT || 3000,
     usersRouter = require('./routes/users.js')
 
-const store = new MongoDBStore({
+/* const store = new MongoDBStore({
     url: mongoConnectionString,
     collection: 'sessions'
 })
+*/
+
+mongoose.connect(process.env.MONGOLAB_URI || process.env.MONGODB_URI || process.env.MONGOLAB_URI || 'mongodb://localhost/handi' )
 
 app.use(logger('dev'))
 app.use(express.static(__dirname + 'public'))
