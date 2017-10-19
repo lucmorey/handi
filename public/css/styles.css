@@ -44,6 +44,12 @@ p {
     color: #999;
 }
 
+#content ul {
+    margin: auto;
+    vertical-align: middle;
+    width: 100%;
+}
+
 a, a:hover, a:focus {
     color: rgb(85, 85, 85);
     text-decoration: none;
@@ -183,6 +189,7 @@ a[aria-expanded="true"]::before {
 }
 
 ul ul a {
+    text-align: center;
     font-size: 0.9em !important;
     padding-left: 30px !important;
     background: #99e4ff;
@@ -192,6 +199,9 @@ ul ul a {
     padding: 20px;
     min-height: 100vh;
     transition: all 0.5s;
+    margin: auto;
+    vertical-align: middle;
+    width: 100%;
 }
 
 #sidebarCollapse {
