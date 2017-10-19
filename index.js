@@ -1,3 +1,5 @@
+console.log(process.env)
+
 const
     dotenv = require('dotenv').load({silent: true}),
     express = require('express'),
@@ -17,6 +19,8 @@ const
     MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost/handi'
     port = process.env.PORT || 3000,
     usersRouter = require('./routes/users.js')
+
+
 
 const store = new MongoDBStore({
     url: MONGODB_URI,
@@ -66,7 +70,6 @@ app.get('/search', (req, res) => {
         console.log(results)
         res.send(results)
     })
-    // console.dir(results);
 })
 
 app.listen(port, (err)=>{
