@@ -18,7 +18,7 @@ const
     usersRouter = require('./routes/users.js')
 
 const store = new MongoDBStore({
-    url: MONGODB_URI,
+    url: 'mongodb://heroku_dljn6htf:mig8dqtkli3i1cin3gqgckf6q5@ds125195.mlab.com:25195/heroku_dljn6htf',
     collection: 'sessions'
 })
 
