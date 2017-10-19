@@ -14,7 +14,7 @@ $(document).ready(()=>{
         res.interests.forEach((el)=>{
             $content.append($('<h2>').text(el.interest))
             $content.append($('<ul>').addClass(el.interest))
-            $content.append($('<div>').addClass('like'))
+            $content.append($('<div>').addClass('line'))
 
             var searchURL = '/search?term=' + el.interest
             $.ajax({url: searchURL, method: 'get'}).done(function(res){
@@ -43,7 +43,11 @@ $searchBar.on('submit', (evt) => {
     $.ajax({url: '/users/<%=user.id%>/interests', method:'post', data: JSON.stringify(data), contentType: "application/json"}).done(function(res){
         console.log(res)
     })
+
     var searchURL = '/search?term=' + term
+    $content.prepend($('<div>').addClass('line'))
+    $content.prepend($('<ul>').addClass(term))
+    $content.prepend($('<h2>').text(term))
     $.ajax({url: searchURL, method: 'get'}).done(function(res){
     
         res.forEach((el)=>{
@@ -52,9 +56,10 @@ $searchBar.on('submit', (evt) => {
             $cardbody = $('<div>').addClass('card-body').append($('<div>').addClass('card-text'))
             $button = $('<div>').append($('<button>'))
             $cardbody.append($button)
-            $div.append($cardbody)
             
-            $list.append($div)
+            $div.append($cardbody)
+            console.log($('#' + term))
+            $('.' + term).append($div)
         }) 
     })
 })
