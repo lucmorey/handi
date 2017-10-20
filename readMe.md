@@ -1,6 +1,6 @@
 # Handi :metal:
 
-
+![](public/images/handi_logo.jpg?=600x300)
 
 ## Whatever you're in to... it'll come in handy!
 
