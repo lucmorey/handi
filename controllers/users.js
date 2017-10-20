@@ -50,13 +50,32 @@ module.exports = {
         })
     },
     interest: (req, res) => {
+        var flag = false;
         User.findById(req.params.id, (err, user)=> {
             if (err) return console.log(err)
-            user.interests.unshift(req.body)
-            user.save((err, updateUser) => {
-                if (err) return console.log(err) 
-                 res.json(updateUser.interests[0]._id)
-             })
+            console.log(req.body.interest)
+            user.interests.forEach((el) => {
+                console.log("-------------")
+                console.log("Item: "+req.body.interest)
+                console.log("Interest: "+el.interest)
+                console.log("-------------")
+                if (req.body.interest === el.interest) {
+                    flag = true
+                }
+                
+            })
+            if(flag){
+                res.json({message:"Matched value", success:false})
+            }
+            else {
+                user.interests.unshift(req.body)
+                user.save((err, updateUser) => {
+                    if (err) return console.log(err) 
+                    res.json(updateUser.interests[0]._id)
+                })
+            }
+            
+            
         })
      },
     populate: (req, res)=>{
@@ -89,3 +108,4 @@ module.exports = {
         })
     }
 }
+

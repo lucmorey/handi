@@ -250,7 +250,7 @@ ul ul a {
 
 @media (max-width: 768px) {
     #sidebar {
-        margin-left: -250px;
+        margin-left: -300px;
         transform: rotateY(90deg);
     }
     #sidebar.active {
