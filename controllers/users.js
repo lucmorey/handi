@@ -55,16 +55,11 @@ module.exports = {
             if (err) return console.log(err)
             console.log(req.body.interest)
             user.interests.forEach((el) => {
-                console.log("-------------")
-                console.log("Item: "+req.body.interest)
-                console.log("Interest: "+el.interest)
-                console.log("-------------")
                 if (req.body.interest === el.interest) {
                     flag = true
-                }
-                
+                }   
             })
-            if(flag){
+            if (flag) {
                 res.json({message:"Matched value", success:false})
             }
             else {
@@ -73,9 +68,7 @@ module.exports = {
                     if (err) return console.log(err) 
                     res.json(updateUser.interests[0]._id)
                 })
-            }
-            
-            
+            }            
         })
      },
     populate: (req, res)=>{
@@ -98,12 +91,35 @@ module.exports = {
         })
     },
     addWin: (req, res) => {
+        var flag = false
         User.findById(req.params.id, (err,user) => {
             if (err) return console.log(err)
-            user.wins.unshift(req.body)
-            user.save((err, updateUser) => {
+            user.wins.forEach((el)=>{
+                if (req.body.win === el.win) {
+                    flag = true
+                }
+            })
+            if (flag) {
+                res.json({message:"Matched value", success:false})
+            } else {
+                user.wins.unshift(req.body)
+                user.save((err, updateUser) => {
+                    if (err) return console.log(err)
+                    res.send(updateUser)
+                })
+            }
+        })
+    },
+    deleteWin: (req, res)=>{
+        User.findById(req.params.userId, (err, user)=>{
+            if (err) return console.log(err)
+            var winIndex = user.wins.findIndex((el)=>{
+                return el.id == req.params.winId
+            })
+            user.wins.splice(winIndex, 1)
+            user.save((err, updatedUser)=>{
                 if (err) return console.log(err)
-                res.send(updateUser)
+                res.send(updatedUser)
             })
         })
     }

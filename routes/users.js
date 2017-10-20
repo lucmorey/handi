@@ -53,4 +53,6 @@ usersRouter.get('/populate/:id', usersCntr.populate)
 
 usersRouter.delete('/users/:userId/:interestId', usersCntr.deleteInterest)
 
+usersRouter.delete('/wins/:userId/:winId', usersCntr.deleteWin)
+
 module.exports = usersRouter

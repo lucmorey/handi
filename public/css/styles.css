@@ -32,6 +32,13 @@ body {
     display: inline-block
 }
 
+.win .delete-win {
+    display: none;
+}
+.win:hover .delete-win {
+    display: inline;
+}
+
 @import "https://fonts.googleapis.com/css?family=Fugaz+One|Montserrat";
 
 body {
