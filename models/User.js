@@ -2,10 +2,10 @@ const
     mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
     interestsSchema =new mongoose.Schema({ 
-        interest: String
+        interest: {type: String, minlength: 1}
     }),
     winsSchema = new mongoose.Schema({
-        win: String
+        win: {type: String, unique: true}
     }),
     usersSchema = new mongoose.Schema({
         userName: {type: String, required: true, minlength: 1},

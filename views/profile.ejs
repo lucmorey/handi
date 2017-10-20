@@ -20,16 +20,23 @@
                 var searchURL = '/search?term=' + el.interest
                 $.ajax({url: searchURL, method: 'get'}).done(function(res){
                     res.forEach((ytResult)=>{
+                        console.log(ytResult.id)
                         $div = $('<div>').addClass('card').attr('style', "width: 18rem;").html(
                                 `<iframe class="card-img-top" src="https://www.youtube.com/embed/${ytResult.id}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`)
                         $cardbody = $('<div>').addClass('card-body').append($('<div>').addClass('card-text'))
-                        $button = $('<div>').append($('<button>').addClass('btn btn-primary wins').attr("id", el).text("winner!"))
+                        $button = $('<div>').append($('<button>').addClass('btn btn-primary wins').attr("id", ytResult.id).text("winner!"))
                         $cardbody.append($button)
                         $div.append($cardbody)
                         console.log('.'+el.interest)
                         $('.'+el.interest).append($div)
                     }) 
                 })    
+            })
+            res.wins.forEach((win, i)=>{
+                if (i < 4) {
+                $('.wins-list').append($('<li>').html(
+                    `<iframe class="card-img-top" src="https://www.youtube.com/embed/${win.win}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`))
+                }
             })
         })
     })
@@ -40,14 +47,17 @@
         })
         $('.' + this.id).remove()
     })
+
     $('body').on('click', '.wins', function(evt) {
+        winId = this.id
         var winData = {
-            "win": this.id 
+            "win" : winId 
         }
         $.ajax({url: '/wins/<%= user.id %>', method: 'post', data: JSON.stringify(winData), contentType: "application/json"}).done(function(res){
-            console.log(res)
+            console.log(res.wins[0].win)
+            $('.wins-list').prepend($('<li>').html(
+                `<iframe class="card-img-top" src="https://www.youtube.com/embed/${res.wins[0].win}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`))
         })
-
     })
     
     $searchBar.on('submit', (evt) => {
@@ -74,7 +84,7 @@
                 $div = $('<div>').addClass('card').attr('style', "width: 18rem;").html(
                         `<iframe class="card-img-top" src="https://www.youtube.com/embed/${el.id}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`)
                 $cardbody = $('<div>').addClass('card-body').append($('<div>').addClass('card-text'))
-                $button = $('<div>').append($('<button>'))
+                $button = $('<div>').append($('<button>').addClass('btn btn-primary wins').attr("id", el.id).text("winner!"))
                 $cardbody.append($button)
                 
                 $div.append($cardbody)
