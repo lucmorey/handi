@@ -1,4 +1,5 @@
-# Handi
+# Handi :metal:
+
 
 
 ## Whatever you're in to... it'll come in handy!
@@ -7,8 +8,11 @@
 
 
 
-
 Handi is a video application that allows a user to create to their own personal video dashboard, filled with exciting random videos matching the users own keyword interests, and a special little place to save and easily view marked favorites... all from one page!
+
+## Dream Features
+
+## Known Bugs
 
 ## Technologies and key packages used
 - HTML
@@ -27,7 +31,7 @@ Handi is a video application that allows a user to create to their own personal 
 
 ![](public/images/erd.png?raw=true)
 ![](public/images/wireframe.png?raw=true)
-![](https://www.youtube.com/watch?v=MHHv4u8Vomw)
+
 -
 
 
