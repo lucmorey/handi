@@ -9,9 +9,9 @@ body {
     box-shadow: 0 3px 0 0 #7bb8cb;
 }
 
-ul.id {
+.main-videos {
     position: center;
-    margin: 0 auto;
+    padding-left: 0;
 }
 
 .btn-primary:hover {
@@ -57,9 +57,8 @@ p {
     color: #999;
 }
 
-#content ul {
+#content {
     margin: auto;
-    vertical-align: middle;
     width: 100%;
 }
 

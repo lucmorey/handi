@@ -13,7 +13,7 @@
             res.interests.forEach((el)=>{
                 $interestRow = $('<div>').addClass(el._id)
                 $interestRow.append($('<h2>').text(el.interest))
-                $interestRow.append($('<ul>').addClass(el.interest))
+                $interestRow.append($('<ul>').addClass(el.interest + " main-videos"))
                 $interestRow.append($('<button>').addClass('btn btn-primary delete').attr('id', el._id).text('Delete Interest'))
                 $interestRow.append($('<div>').addClass('line'))
                 $content.append($interestRow)
@@ -71,7 +71,6 @@
             $newRow = $('<div>').addClass(res)
             $newRow.append($('<h2>').text(term))
             $newRow.append($('<ul>').addClass(term))
-                break
             $newRow.append($('<button>').addClass('btn btn-primary delete').attr('id', res).text('Delete Interest'))
             $newRow.append($('<div>').addClass('line'))
             $content.prepend($newRow)
