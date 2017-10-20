@@ -61,6 +61,7 @@
             $newRow = $('<div>').addClass(res)
             $newRow.append($('<h2>').text(term))
             $newRow.append($('<ul>').addClass(term))
+                break
             $newRow.append($('<button>').addClass('btn btn-primary delete').attr('id', res).text('Delete Interest'))
             $newRow.append($('<div>').addClass('line'))
             $content.prepend($newRow)

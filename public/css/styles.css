@@ -6,13 +6,26 @@ body {
     color: #fff;
     background-color: #99e4ff;
     border-color: #99e4ff;
+    box-shadow: 0 3px 0 0 #7bb8cb;
 }
+
+ul.id {
+    position: center;
+    margin: 0 auto;
+}
+
 .btn-primary:hover {
     background-color: #55d0f9;
-    border-color: #55d0f9
+    border-color: #55d0f9;
+    box-shadow: 0 3px 0 0 #7bb8cb;
 }
+
 .video-player {
     display: inline-block;
+}
+
+.delete {
+    margin-top: 25px;
 }
 
 .card {
@@ -42,6 +55,12 @@ p {
     font-weight: 300;
     line-height: 1.7em;
     color: #999;
+}
+
+#content ul {
+    margin: auto;
+    vertical-align: middle;
+    width: 100%;
 }
 
 a, a:hover, a:focus {
@@ -192,6 +211,9 @@ ul ul a {
     padding: 20px;
     min-height: 100vh;
     transition: all 0.5s;
+    margin: auto;
+    vertical-align: middle;
+    width: 100%;
 }
 
 #sidebarCollapse {
