@@ -34,8 +34,12 @@
             })
             res.wins.forEach((win, i)=>{
                 if (i < 4) {
-                $('.wins-list').append($('<li>').html(
-                    `<iframe class="card-img-top" src="https://www.youtube.com/embed/${win.win}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`))
+                    $winsList = $('.wins-list')
+                    $newWin = $('<div>').addClass(win._id +' win')
+                    $newWin.append($('<li>').html(
+                        `<iframe src="https://www.youtube.com/embed/${win.win}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`))
+                    $newWin.append($('<button>').addClass('btn btn-primary delete-win').text('Remove').attr('id', win._id))
+                    $winsList.append($newWin)
                 }
             })
         })
@@ -45,7 +49,9 @@
         $.ajax({url: '/users/<%= user.id %>/' + this.id, method: 'delete'}).done(function(res){
             console.log(res)
         })
-        $('.' + this.id).remove()
+        $('.' + this.id).slideUp('normal', function(){
+            $(this).remove()
+        })
     })
 
     $('body').on('click', '.wins', function(evt) {
@@ -54,12 +60,28 @@
             "win" : winId 
         }
         $.ajax({url: '/wins/<%= user.id %>', method: 'post', data: JSON.stringify(winData), contentType: "application/json"}).done(function(res){
-            console.log(res.wins[0].win)
-            $('.wins-list').prepend($('<li>').html(
-                `<iframe class="card-img-top" src="https://www.youtube.com/embed/${res.wins[0].win}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`))
+            console.log(res.success)
+            if (res.success !== false) {
+                $winsList = $('.wins-list')
+                $newWin = $('<div>').addClass(res.wins[0]._id + ' win')
+                $newWin.append($('<li>').html(
+                    `<iframe src="https://www.youtube.com/embed/${res.wins[0].win}?feature=player_embedded" frameborder="0" allowfullscreen></iframe>`))
+                $newWin.append($('<button>').addClass('btn btn-primary delete-win').text('Remove').attr('id', res.wins[0]._id))
+                $winsList.prepend($newWin)
+            }   
         })
     })
     
+    $('body').on('click', '.delete-win', function(evt) {
+        console.log(this.id)
+        $.ajax({url: '/wins/<%= user.id %>/' + this.id, method: 'delete'}).done(function(res){
+            console.log(res)
+        })
+        $('.' + this.id).slideUp('normal', function(){
+            $(this).remove()
+        })
+    })
+
     $searchBar.on('submit', (evt) => {
         evt.preventDefault()
         var term = $("#search-value").val()
