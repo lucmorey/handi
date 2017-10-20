@@ -1,7 +1,7 @@
 const
     mongoose = require('mongoose'),
     bcrypt = require('bcrypt-nodejs'),
-    interestsSchema =new mongoose.Schema({ 
+    interestsSchema = new mongoose.Schema({ 
         interest: {type: String, minlength: 1}
     }),
     winsSchema = new mongoose.Schema({
